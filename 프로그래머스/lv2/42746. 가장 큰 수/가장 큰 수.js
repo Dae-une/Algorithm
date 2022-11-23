@@ -1,19 +1,8 @@
 function solution(numbers) {
-    var answer = '';
-    for(let i=0;i<numbers.length;i++){ 
-        numbers[i]=String(numbers[i]);
-    }
 
-    numbers.sort(condition); 
-    numbers.forEach((num)=>{
-        answer+=num;
-    })
-    if(Number(answer) === 0) return '0'
-    return answer;
-}
-
-function condition(a,b){
-    if (a+b<b+a) return 1; 
-    if (a+b>b+a) return -1;
-    if (a+b===b+a) return 0;
+    
+    let answer = numbers.map((a)=>a.toString()).sort((a,b)=>(b+a) - (a+b)).join('')
+    
+    
+    return answer[0]=== '0' ? '0' : answer
 }
