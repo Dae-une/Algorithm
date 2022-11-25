@@ -2,14 +2,18 @@ function solution(people, limit) {
     let People =people.sort((a,b)=>a-b)
     console.log(People)
     let count =0;
-    while(People.length >0){
-        if(People[0] + People[People.length-1] > limit){
+    let front =0;
+    while(true){
+        if(front > People.length-1){
+            break;
+        }
+        if(People[front] + People[People.length-1] > limit){
             count++
             People.pop()
         }else{
             count++
+            front++
             People.pop()
-            People.shift()
         }
     }
     
