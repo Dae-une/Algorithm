@@ -1,5 +1,3 @@
-
-
 function solution(s) {
     const arr = s.split('')
     let result =0;
