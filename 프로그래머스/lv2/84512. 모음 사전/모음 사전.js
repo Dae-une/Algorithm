@@ -5,7 +5,7 @@ function solution(word) {
     
     for(let i =0; i< wordArr.length;i++){
         const target = str.findIndex((str)=> str === wordArr[i])
-        answer +=getNum(i) * target +1
+        answer +=getNum(i) * target+1
     }
     
     
