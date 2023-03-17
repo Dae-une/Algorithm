@@ -1,32 +1,31 @@
 function solution(bridge_length, weight, truck_weights) {
-    let time=0;
-    let weightSum =0;
+    let time = 0;
     const bridge = new Array(bridge_length).fill(0)
-    
-    let nextTruck = truck_weights.shift();
-    weightSum += nextTruck
-    bridge.unshift(nextTruck)
+    let sumWeight =0;    
+
+    let nextTruck = truck_weights.shift()
     bridge.pop()
-    time ++
+    bridge.unshift(nextTruck)
+    sumWeight +=nextTruck
+    time++
     
-    while(weightSum){
-        const passed =bridge.pop();
-        weightSum -= passed;
-        
+    while(sumWeight){
+        const passed = bridge.pop();
         nextTruck = truck_weights.shift()
-        if(nextTruck === undefined) nextTruck =0;
+        sumWeight -=passed
         
-        if(weightSum + nextTruck > weight){
-            bridge.unshift(0);
-            truck_weights.unshift(nextTruck)
+        if(nextTruck === undefined) nextTruck = 0;
+        
+        if(nextTruck + sumWeight > weight){
+            truck_weights.unshift(nextTruck);
+            bridge.unshift(0)
         }else{
             bridge.unshift(nextTruck)
-            weightSum += nextTruck
+            sumWeight +=nextTruck
         }
-        time ++
         
+        time++
     }
     
     return time
-    
 }
