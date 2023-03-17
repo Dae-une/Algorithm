@@ -1,9 +1,10 @@
 function solution(s){
-  let count = 0;
-  for (const item of s) {
-    if (item === "(") count += 1;
-    if (item === ")") count -= 1;
-    if (count < 0) return false;
-  }
-  return count === 0;
+    var answer = 0;
+    
+    for(let i of s){
+        i === '(' ? answer++ : answer--;
+        if(answer <0) return false
+    }
+
+    return answer === 0;
 }
