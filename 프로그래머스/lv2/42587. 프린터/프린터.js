@@ -1,20 +1,19 @@
 function solution(priorities, location) {
-    var answer = 0;
-    const pri = priorities.map((item,idx) => [item,idx])
+  var answer = 0;
+    const pri = priorities.map((num,idx)=> [num,idx])
+    const printed =[]
     console.log(pri)
-    let arr =[]
-    let count =0;
-
-    while(pri.length >0){
-        let temp = pri.shift()
-        if( pri.some((a)=> temp[0] < a[0])){
-            pri.push(temp)
+        while(true){
+        const current = pri[0]
+        pri.shift();
+        if(pri.some((a)=>a[0] >current[0])){
+            pri.push(current)
         }else{
-            arr.push(temp)
-            if(arr[count][1] === location ) break;
-            count++
+            printed.push(current)
+            if(printed[printed.length-1][1] === location){
+            break;
+        }
         }
     }
-        
-    return count+1;
+    return printed.length;
 }
