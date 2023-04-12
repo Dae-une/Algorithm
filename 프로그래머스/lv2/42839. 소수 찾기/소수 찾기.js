@@ -1,29 +1,38 @@
 function solution(numbers) {
-    let nums = numbers.split('')
-    let answer=[]
+    const number =numbers.split('');
+    let answer =0;
+    const arr =[]
+    for(let i =1; i<=number.length;i++){
+        const permutation = getPermutations(number,i);
+        arr.push(...permutation)
+    }
     
-    function getPermutation(array,fixed){
-        if(array.length){
-            for(let i =0; i< array.length; i ++){
-                const temp = [...array]
-                temp.splice(i,1)
-                if( isPrime(parseInt(fixed + array[i]))){
-                    answer.push(parseInt(fixed+array[i]))
-                }
-                getPermutation(temp,fixed+array[i])
-            }
+    const set =[...new Set(arr.flatMap((el)=>Number(el.join(''))))]
+    for(const num of set){
+        if(isPrime(num)){
+            answer++
         }
     }
-    getPermutation(nums,'')
-    return new Set(answer).size
-
+    return answer;
 }
 
-function isPrime(num){
-    if(num < 2) return false
-    for( let i =2; i<= Math.sqrt(num); i++){
-        if(num % i === 0) return false
+const isPrime=(num)=>{
+    if(num === 1 || num === 0) return false;
+    for(let i=2; i<=Math.sqrt(num);i++){
+        if(num % i ===0) return false;
     }
-    return true
+    return true;
 }
 
+
+const getPermutations =(arr,num)=>{
+    const result =[];
+    if(num ===1) return arr.map((v)=>[v]);
+    arr.forEach((fixed,index,origin)=>{
+        const rest = [...origin.slice(0,index),...origin.slice(index+1)];
+        const permutations = getPermutations(rest,num-1);
+        const attached = permutations.map((el)=>[fixed,...el]);
+        result.push(...attached)
+    })
+    return result;
+}
