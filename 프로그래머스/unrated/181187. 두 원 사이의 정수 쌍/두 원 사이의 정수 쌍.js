@@ -10,10 +10,6 @@ function solution(r1, r2) {
     for (let x=1;x<r1;x++){
         r1Has +=getY(x,r1,'r1');
     }
-    
-    console.log(r2Has,r1Has)
-    
-    
     return (r2Has-r1Has + r2-r1+1) * 4
 }
 
