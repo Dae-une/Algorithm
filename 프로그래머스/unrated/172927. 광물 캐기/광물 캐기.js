@@ -28,6 +28,7 @@ function solution(picks, minerals) {
                 if(tempMinerals.length === 0){
                     return result.push(tempFatigue)
                 }
+                
                 tempPick[i]-=1;
         
                 recursion(tempPick,tempMinerals,tempFatigue)
