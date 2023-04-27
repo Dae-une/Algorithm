@@ -3,6 +3,8 @@ function solution(plans) {
     
     const sortedPlans= plans.map(([title,time,count])=>
                                  [title,timeToMinute(time),Number(count)]).sort((a,b)=> a[1] -b[1])
+    
+
     while(sortedPlans.length){
         const [title,time,count]= sortedPlans.shift();
         
