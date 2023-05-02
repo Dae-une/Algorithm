@@ -1,6 +1,5 @@
 function solution(people, limit) {
     let People =people.sort((a,b)=>a-b)
-    console.log(People)
     let count =0;
     let front =0;
     let back =People.length-1;
