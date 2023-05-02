@@ -3,17 +3,18 @@ function solution(people, limit) {
     console.log(People)
     let count =0;
     let front =0;
+    let back =People.length-1;
     while(true){
-        if(front > People.length-1){
+        if(front > back){
             break;
         }
-        if(People[front] + People[People.length-1] > limit){
+        if(People[front] + People[back] > limit){
             count++
-            People.pop()
+            back--
         }else{
             count++
             front++
-            People.pop()
+            back--
         }
     }
     
