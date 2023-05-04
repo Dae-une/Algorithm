@@ -5,18 +5,25 @@ function solution(msg) {
         dictionary.push(String.fromCharCode(i))
     }
     
-   for(let i =0,j; i< msg.length; i=j){
-       let w = msg[i]
-       for(j = i+1;j<msg.length; j++){
-           let c = msg[j]
-           if(!dictionary.includes(w+c)){
-               dictionary.push(w+c)
-               break;
-           }
-           w += msg[j]
-       }
-       answer.push(dictionary.indexOf(w))
-   }
-    
+    for(let i =0,j; i<msg.length;i=j){
+        let current =msg[i];
+        
+        for(j = i+1; msg.length; j++){
+            let next = msg[j];
+            if(!dictionary.includes((current+next))){
+                dictionary.push(current+next);
+                break;                
+               }
+            current += next;
+        }
+        answer.push(dictionary.indexOf(current))
+    }  
     return answer
 }
+
+
+
+
+
+    
+
