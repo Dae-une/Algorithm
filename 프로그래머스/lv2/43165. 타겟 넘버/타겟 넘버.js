@@ -6,10 +6,15 @@ function solution(numbers, target) {
             getAnswer(index+1,value - numbers[index])
         }else{
             if(value === target){
-                answer++;
+                answer++
             }
         }
     }
     getAnswer(0,0)
     return answer;
 }
+
+
+
+
+
