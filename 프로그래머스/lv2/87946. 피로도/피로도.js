@@ -1,7 +1,6 @@
 function solution(k, dungeons) {
     const permutations = getPermutations(dungeons,dungeons.length);
-    let answer =0;
-    console.log(permutations)
+    let answer =0
     
     for(let i=0; i<permutations.length;i++){
         const dungeon = permutations[i];
