@@ -1,9 +1,11 @@
 function solution(skill, skill_trees) {
-    let regExp = new RegExp(`[^${skill}]`,'g')
-    
-    const result = skill_trees.map((trees)=> trees.replace(regExp,'')).filter((x)=>{
-        return skill.indexOf(x) === 0 || x ===''
-    })
-    
-    return result.length
+    const skills = skill.split('');
+    let count =0;
+    for(let i =0;i<skill_trees.length;i++){
+        const target = skill_trees[i].split('').filter((el)=>skill.includes(el)).join('');
+        if(target ===skill.substring(0,target.length)){
+            count++
+        }
+    }
+    return count;
 }
