@@ -9,5 +9,6 @@ function solution(land) {
             sum = Math.max(sum,land[i][j])
         }
     }
+    
     return sum;
 }
