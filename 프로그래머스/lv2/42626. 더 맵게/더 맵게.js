@@ -1,19 +1,18 @@
 class MinHeap{
     constructor(){
-        this.heap =[]
+        this.heap =[];
     }
+    
     push(value){
         this.heap.push(value);
         let currentIndex = this.heap.length -1;
         
-        while(
-        currentIndex > 0 &&
-        this.heap[currentIndex] < this.heap[Math.floor((currentIndex -1)/2)]
-        ){
+        while(currentIndex > 0 &&
+        this.heap[currentIndex] < this.heap[Math.floor((currentIndex -1)/2)]){
             const temp = this.heap[currentIndex];
             this.heap[currentIndex] = this.heap[Math.floor((currentIndex-1)/2)];
             this.heap[Math.floor((currentIndex -1)/2)] = temp;
-            currentIndex = Math.floor((currentIndex-1)/2);
+            currentIndex = Math.floor((currentIndex -1)/2);
         }
     }
     
@@ -21,13 +20,13 @@ class MinHeap{
         if(this.heap.length === 0) return null;
         if(this.heap.length === 1) return this.heap.pop();
         
-        const minValue =this.heap[0];
+        const minValue = this.heap[0];
         this.heap[0] = this.heap.pop();
-        let currentIndex =0;
+        let currentIndex = 0;
         
-        while(currentIndex * 2 +1 <this.heap.length){
-            let minChildIndex = currentIndex * 2 +2 <this.heap.length &&
-            this.heap[currentIndex *2 +2] < this.heap[currentIndex * 2 +1] ?
+        while(currentIndex * 2 +1  < this.heap.length){
+            let minChildIndex = currentIndex * 2 +2 < this.heap.length &&
+                this.heap[currentIndex * 2 +2] < this.heap[currentIndex *2 +1] ?
                 currentIndex *2 +2 : currentIndex *2 +1;
             
             if(this.heap[currentIndex] < this.heap[minChildIndex]){
@@ -37,7 +36,7 @@ class MinHeap{
             const temp = this.heap[currentIndex];
             this.heap[currentIndex] = this.heap[minChildIndex];
             this.heap[minChildIndex] = temp;
-            currentIndex = minChildIndex;
+            currentIndex =minChildIndex;
         }
         return minValue;
     }
@@ -45,7 +44,6 @@ class MinHeap{
     peek(){
         return this.heap[0];
     }
-    
     size(){
         return this.heap.length;
     }
@@ -55,18 +53,20 @@ function solution(scoville, K) {
     const minHeap = new MinHeap();
     
     for(const sco of scoville){
-        minHeap.push(sco)
+        minHeap.push(sco);
     }
+
     
     let count =0;
     
-    while(minHeap.size() >=2 && minHeap.peek() <K){
+    while(minHeap.size() >=2 && minHeap.peek() < K){
         const first = minHeap.pop();
-        const second = minHeap.pop();
-        const mixed = first + second *2;
-        minHeap.push(mixed);
+        const second =minHeap.pop();
+        const newScoville = first + second *2;
+        minHeap.push(newScoville);
         count++;
     }
     
-    return minHeap.peek() >= K ? count : -1;
+    
+    return minHeap.peek() >= K ? count :-1;
 }
