@@ -1,38 +1,38 @@
 function solution(want, number, discount) {
-    let basket = discount.slice(0,10)
-    let answer = 0;
-    const wantObj ={}
+    let wantObj = {};
+    let count =0;
+    
     want.forEach((elem,idx)=>{
-        wantObj[elem] = number[idx]
+        wantObj[elem] = number[idx];
     })
     
-    function isCorrect(arr){
-        let target = {...wantObj}
-        let result = true
-        for(let i =0; i<arr.length;i++){
-            if(target[arr[i]]){
-                target[arr[i]] -=1
+    let baskets =discount.slice(0,10);
+     
+    const isCorrect =(basket)=>{
+        let targets = {...wantObj};
+        let result =true;
+        
+        for(let i =0; i<basket.length; i++){
+            if(targets[basket[i]]){
+                targets[basket[i]] -=1;
             }else{
-                return result=false
+                return result=false;
             }
         }
         
-        for(let count in target){
-            if(target[count] > 0) return result = false
+        for(let count in targets){
+            if(targets[count] > 0) return result =false;
         }
-    
-        return result
+        return result;
     }
     
-    for(let i =10; i<=discount.length;i++){
-        if(isCorrect(basket)){
-            answer++
-        } 
-        basket.shift()
-        basket.push(discount[i])
+    for(let i =10;i<=discount.length; i++){
+        if(isCorrect(baskets)){
+            count++;           
+        }
+        baskets.shift();
+        baskets.push(discount[i]);
     }
     
-    return answer
+    return count;
 }
-
-
