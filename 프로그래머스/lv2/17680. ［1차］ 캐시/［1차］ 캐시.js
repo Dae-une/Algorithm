@@ -1,30 +1,40 @@
 function solution(cacheSize, cities) {
-    let cacheArr =[]
     let time =0;
-    for (let i =0; i <cities.length; i++){
-        cities[i] = cities[i].toLowerCase()
+    let cache =[];
+    
+    const isOverSize =()=>{
+        return cacheSize < cache.length;
+    }
+    
+    for(let i =0; i<cities.length;i++){
+        const temp = cities[i].toUpperCase();
         
-        let findObj = cacheArr.find((elem)=> elem.name ===cities[i])
+        let isCache = cache.find((elem)=>elem.name === temp);
         
-        if(!findObj){
-            let obj = {name:cities[i],idx:i}
-            cacheArr.push(obj)
-            time+=5
-            if(cacheArr.length > cacheSize){
-                cacheArr.shift()
+        if(!isCache){
+            cache.push({name:temp,idx:i});
+            time +=5;
+            if(isOverSize()){
+                cache.shift();
             }
-        }else{
-            let findIdx =cacheArr.indexOf(findObj)
-            cacheArr[findIdx].idx =i;
-            time++
         }
-        cacheArr.sort((a,b)=>{
-            if(a.idx>b.idx){
+        
+        if(isCache){
+            time +=1;
+            let index = cache.indexOf(isCache);
+            cache[index].idx = i;
+        }
+
+        
+        cache.sort((a,b)=>{
+            if(a.idx > b.idx){
                 return 1;
             }else if(a.idx<b.idx){
-                return -1
+                return -1;
             }
         })
+        
     }
-    return time
+    
+    return time;
 }
